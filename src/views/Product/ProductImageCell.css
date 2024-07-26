@@ -1,0 +1,23 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.product-image {
+    max-width: 70px;
+    max-height: 70px;
+    border-radius: 50%; /* Adjust the radius as needed */
+    display: block;
+}
+
+.discount-label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: rgba(255, 0, 0, 0.7); /* Semi-transparent red background */
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px; /* Rounded corners for the label */
+    font-size: 0.8rem; /* Adjust font size as needed */
+    z-index: 1;
+}
