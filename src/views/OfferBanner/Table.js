@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import {
@@ -33,11 +33,7 @@ const TableBanner = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         setLoading(true);
         setError(null);
         try {
@@ -62,7 +58,11 @@ const TableBanner = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [navigate]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
 
     const handleDeleteConfirmation = (id) => {
         setDeleteProductId(id);
@@ -128,6 +128,9 @@ const TableBanner = () => {
             setError("Error updating product");
         }
     };
+
+    if (loading) return <CircularProgress />;
+    if (error) return <div>{error}</div>;
 
     return (
         <>

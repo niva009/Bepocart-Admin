@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import "./ProductImageCell.css";
@@ -30,26 +30,9 @@ const TableBanner = ({ searchQuery }) => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    useEffect(() => {
-        if (searchQuery) {
-            const lowercasedQuery = searchQuery.toLowerCase();
-            setFilteredProducts(
-                products.filter(
-                    product =>
-                        product.name.toLowerCase().includes(lowercasedQuery) ||
-                        product.categoryName.toLowerCase().includes(lowercasedQuery)
-                )
-            );
-        } else {
-            setFilteredProducts(products);
-        }
-    }, [searchQuery, products]);
-
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
+        setLoading(true);
+        setError(null);
         try {
             const token = localStorage.getItem('token');
             const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-products/", {
@@ -65,6 +48,7 @@ const TableBanner = ({ searchQuery }) => {
                 console.log("Response data:", response.data.data);
             } else {
                 console.error("Invalid data format:", response.data);
+                setError("Invalid data format received");
             }
         } catch (error) {
             console.error("Error fetching products:", error);
@@ -76,7 +60,26 @@ const TableBanner = ({ searchQuery }) => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [navigate]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
+
+    useEffect(() => {
+        if (searchQuery) {
+            const lowercasedQuery = searchQuery.toLowerCase();
+            setFilteredProducts(
+                products.filter(
+                    product =>
+                        product.name.toLowerCase().includes(lowercasedQuery) ||
+                        product.categoryName.toLowerCase().includes(lowercasedQuery)
+                )
+            );
+        } else {
+            setFilteredProducts(products);
+        }
+    }, [searchQuery, products]);
 
     const handleDeleteConfirmation = (id) => {
         setDeleteProductId(id);

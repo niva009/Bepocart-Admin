@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import {
@@ -25,13 +25,10 @@ const BlogTable = () => {
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [expandedRows, setExpandedRows] = useState([]);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         setLoading(true);
         setError(null);
         try {
@@ -56,7 +53,11 @@ const BlogTable = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [navigate]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
 
     const handleDeleteConfirmation = (id) => {
         setDeleteProductId(id);
@@ -90,8 +91,6 @@ const BlogTable = () => {
         return text;
     };
 
-    const [expandedRows, setExpandedRows] = useState([]);
-
     const handleToggleExpand = (id) => {
         if (expandedRows.includes(id)) {
             setExpandedRows(expandedRows.filter(rowId => rowId !== id));
@@ -99,9 +98,11 @@ const BlogTable = () => {
             setExpandedRows([...expandedRows, id]);
         }
     };
+
     const handleUpdateClick = (productId) => {
         navigate(`/blog-update/${productId}/`);
     };
+
 
     return (
         <>

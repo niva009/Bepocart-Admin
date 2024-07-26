@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate ,Link} from "react-router-dom";
 import {
     Typography,
     Box,
@@ -29,12 +29,7 @@ const TableBanner = () => {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    useEffect(() => {
-        const productId = parseInt(id);
-        fetchProducts(productId);
-    }, [id]);
-
-    const fetchProducts = async (productId) => {
+    const fetchProducts = useCallback(async (productId) => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
@@ -59,7 +54,12 @@ const TableBanner = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [navigate]);
+
+    useEffect(() => {
+        const productId = parseInt(id);
+        fetchProducts(productId);
+    }, [id, fetchProducts]);
 
     const handleDeleteConfirmation = (id) => {
         setDeleteProductId(id);

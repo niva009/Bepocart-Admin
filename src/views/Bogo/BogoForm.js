@@ -20,7 +20,6 @@ import {
     Checkbox,
     FormControlLabel,
 } from "@mui/material";
-import { format } from 'date-fns';
 
 const FbDefaultForm = () => {
     const [open, setOpen] = useState(false);
@@ -63,7 +62,6 @@ const FbDefaultForm = () => {
     const [discount_products, setDiscountProducts] = useState([]);
     const [discount_category, setDiscountCategory] = useState([]);
     const [coupons, setCoupons] = useState([]);
-    const [percentageValue, setPercentageValue] = useState("");
 
     useEffect(() => {
         axios.get("http://127.0.0.1:8000/admin/Bepocart-products/", {

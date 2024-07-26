@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import {
@@ -35,15 +35,7 @@ const FbDefaultForm = () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        if (id) {
-            fetchCouponDetails();
-        }
-        fetchProducts();
-        fetchCategories();
-    }, [id]);
-
-    const fetchCouponDetails = async () => {
+    const fetchCouponDetails = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-promotion-coupen-update/${id}/`, {
@@ -76,12 +68,9 @@ const FbDefaultForm = () => {
             console.error("Error fetching coupon details:", error);
             // Handle error
         }
-    };
-    
-    
-    
+    }, [id]);
 
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-products/", {
@@ -94,9 +83,9 @@ const FbDefaultForm = () => {
             console.error("Error fetching products:", error);
             // Handle error
         }
-    };
+    }, []);
 
-    const fetchCategories = async () => {
+    const fetchCategories = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-subcategories/", {
@@ -109,7 +98,15 @@ const FbDefaultForm = () => {
             console.error("Error fetching categories:", error);
             // Handle error
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        if (id) {
+            fetchCouponDetails();
+        }
+        fetchProducts();
+        fetchCategories();
+    }, [id, fetchCouponDetails, fetchProducts, fetchCategories]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -141,11 +138,9 @@ const FbDefaultForm = () => {
             console.error("Error updating coupon:", error);
             // Show error message
         }
-        console.log("Product   :",formData.discount_product);
-        console.log("Categry    :",formData.discount_category);
-
+        console.log("Product   :", formData.discount_product);
+        console.log("Category  :", formData.discount_category);
     };
-    
 
     return (
         <div>

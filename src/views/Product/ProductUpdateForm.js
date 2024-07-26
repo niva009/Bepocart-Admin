@@ -146,16 +146,15 @@ const FbDefaultForm = () => {
             formData.append("short_description", state.shortDescription);
 
             const token = localStorage.getItem("token");
-            let response;
             if (id) {
-                response = await axios.put(`http://127.0.0.1:8000/admin/Bepocart-product-update/${id}/`, formData, {
+                 await axios.put(`http://127.0.0.1:8000/admin/Bepocart-product-update/${id}/`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `${token}`,
                     },
                 });
             } else {
-                response = await axios.post("http://127.0.0.1:8000/admin/Bepocart-product/", formData, {
+                 await axios.post("http://127.0.0.1:8000/admin/Bepocart-product/", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `${token}`,

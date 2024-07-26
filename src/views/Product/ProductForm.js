@@ -32,13 +32,13 @@ const FbDefaultForm = () => {
         offerEndDate: "",
     });
 
-    const OfferTypes = [
-        { value: "50%", label: "50%" },
-        { value: "BUY 1 GET 1", label: "BUY 1 GET 1" },
-        { value: "FLASH SALE", label: "FLASH SALE" },
-        { value: "BUY 2 GET 1", label: "BUY 2 GET 1" },
-        { value: "DISCOUNT SALE", label: "DISCOUNT SALE" },
-    ];
+    // const OfferTypes = [
+    //     { value: "50%", label: "50%" },
+    //     { value: "BUY 1 GET 1", label: "BUY 1 GET 1" },
+    //     { value: "FLASH SALE", label: "FLASH SALE" },
+    //     { value: "BUY 2 GET 1", label: "BUY 2 GET 1" },
+    //     { value: "DISCOUNT SALE", label: "DISCOUNT SALE" },
+    // ];
 
     const [categories, setCategories] = useState([]);
     const [message, setMessage] = useState(null);
@@ -142,7 +142,7 @@ const FbDefaultForm = () => {
 
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.post("http://127.0.0.1:8000/admin/Bepocart-product/", formData, {
+              await axios.post("http://127.0.0.1:8000/admin/Bepocart-product/", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `${token}`,

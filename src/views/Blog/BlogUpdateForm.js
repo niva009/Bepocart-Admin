@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import {
@@ -27,15 +27,7 @@ const FbDefaultForm = () => {
     const [open, setOpen] = useState(false);
     const [updateMode, setUpdateMode] = useState(false);
 
-    useEffect(() => {
-        if (id) {
-            // Fetch existing blog data if ID exists (indicating update mode)
-            fetchBlogData();
-            setUpdateMode(true);
-        }
-    }, [id]);
-
-    const fetchBlogData = async () => {
+    const fetchBlogData = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
             const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-Blog-update/${id}/`, {
@@ -43,7 +35,7 @@ const FbDefaultForm = () => {
                     'Authorization': `${token}`,
                 },
             });
-            const { title, content } = response.data.data; 
+            const { title, content } = response.data.data;
             setState({
                 ...state,
                 title,
@@ -55,13 +47,20 @@ const FbDefaultForm = () => {
             setSeverity("error");
             setOpen(true);
         }
-    };
+    }, [id, state]);
+
+    useEffect(() => {
+        if (id) {
+            fetchBlogData();
+            setUpdateMode(true);
+        }
+    }, [id, fetchBlogData]);
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         setState({
             ...state,
-            [name]: name === 'image' ? files[0] : value,
+            [name]: name === 'file' ? files[0] : value,
         });
     };
 

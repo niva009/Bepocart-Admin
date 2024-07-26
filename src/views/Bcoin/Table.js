@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import {
@@ -39,11 +39,7 @@ const CoinTable = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchCoins();
-    }, []);
-
-    const fetchCoins = async () => {
+    const fetchCoins = useCallback(async () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
@@ -52,7 +48,7 @@ const CoinTable = () => {
                     'Authorization': `${token}`,
                 },
             });
-    
+
             if (Array.isArray(response.data.data)) {
                 setCoins(response.data.data);
             } else {
@@ -69,7 +65,11 @@ const CoinTable = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [navigate]);
+
+    useEffect(() => {
+        fetchCoins();
+    }, [fetchCoins]);
 
     const handleDeleteConfirmation = (id) => {
         setDeleteCoinId(id);
@@ -83,13 +83,13 @@ const CoinTable = () => {
                 console.error("User is not authenticated");
                 return;
             }
-    
+
             await axios.delete(`http://127.0.0.1:8000/admin/Bepocart-coin-delete/${deleteCoinId}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
             });
-    
+
             setCoins(coins.filter(coin => coin.id !== deleteCoinId));
             setDeleteDialogOpen(false);
         } catch (error) {

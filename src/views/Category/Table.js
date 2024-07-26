@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import {
@@ -32,11 +32,7 @@ const CategoryTable = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
@@ -49,7 +45,6 @@ const CategoryTable = () => {
     
             if (Array.isArray(response.data)) {
                 setProducts(response.data);
-                
             } else {
                 console.error("Invalid data format:", response.data);
                 setError("Invalid data format");
@@ -64,7 +59,11 @@ const CategoryTable = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [navigate]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
 
     const handleDeleteConfirmation = (id) => {
         setDeleteProductId(id);

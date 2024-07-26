@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from 'react-router-dom';
 import {
@@ -20,7 +20,6 @@ import {
     TextField,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 
 const CoinTable = () => {
     const { id } = useParams(); // Accessing 'id' from URL params
@@ -37,11 +36,7 @@ const CoinTable = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchCoins();
-    }, []);
-
-    const fetchCoins = async () => {
+    const fetchCoins = useCallback(async () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
@@ -68,7 +63,11 @@ const CoinTable = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [id, navigate]);
+
+    useEffect(() => {
+        fetchCoins();
+    }, [fetchCoins]);
 
     const handleDeleteConfirmation = (id) => {
         setDeleteCoinId(id);
@@ -101,14 +100,14 @@ const CoinTable = () => {
         setDeleteDialogOpen(false);
     };
 
-    const handleUpdate = (id, coin, value, loginValue, paymentValue) => {
-        setEditCoinId(id);
-        setEditedCoinQuantity(coin);
-        setEditedCoinValue(value);
-        setEditedLoginValue(loginValue);
-        setEditedPaymentValue(paymentValue);
-        setEditDialogOpen(true);
-    };
+    // const handleUpdate = (id, coin, value, loginValue, paymentValue) => {
+    //     setEditCoinId(id);
+    //     setEditedCoinQuantity(coin);
+    //     setEditedCoinValue(value);
+    //     setEditedLoginValue(loginValue);
+    //     setEditedPaymentValue(paymentValue);
+    //     setEditDialogOpen(true);
+    // };
 
     const handleEditDialogClose = () => {
         setEditCoinId(null);

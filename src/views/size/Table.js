@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-import { useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import {
     Typography,
@@ -32,16 +32,12 @@ const CategoryTable = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const { id } = useParams();  // Access the id parameter from the URL
+    const { id } = useParams();
 
-    useEffect(() => {
-        fetchProducts(id);  // Pass the id to fetchProducts
-    }, [id]);
-
-    const fetchProducts = async (id) => {
+    const fetchProducts = useCallback(async (id) => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('token')
+            const token = localStorage.getItem('token');
             const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-product-varient-view/${id}/`, {
                 headers: {
                     'Authorization': `${token}`
@@ -64,7 +60,11 @@ const CategoryTable = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [navigate]);
+
+    useEffect(() => {
+        fetchProducts(id);
+    }, [fetchProducts, id]);
 
     const handleDeleteConfirmation = (id) => {
         setDeleteProductId(id);
@@ -149,14 +149,11 @@ const CategoryTable = () => {
                             <TableRow key={product.id}>
                                 <TableCell>{product.id}</TableCell>
                                 <TableCell>
-                                    {/* <Link to={`/size-table/${product.id}/`} style={{ textDecoration: 'none', color: 'inherit' }}> */}
-
-                                        <img
-                                            src={`http://127.0.0.1:8000/${product.productImage}`}
-                                            alt={product.name}
-                                            style={{ maxWidth: "70px", maxHeight: "70px" }}
-                                        />
-                                    {/* </Link> */}
+                                    <img
+                                        src={`http://127.0.0.1:8000/${product.productImage}`}
+                                        alt={product.name}
+                                        style={{ maxWidth: "70px", maxHeight: "70px" }}
+                                    />
                                 </TableCell>
                                 <TableCell>
                                     <Box>
@@ -170,12 +167,12 @@ const CategoryTable = () => {
                                 </TableCell>
                                 <TableCell>
                                     <Button variant="contained" color="error" onClick={() => handleDeleteConfirmation(product.id)}>
-                                        <DeleteIcon/> Delete
+                                        <DeleteIcon /> Delete
                                     </Button>
                                 </TableCell>
                                 <TableCell>
                                     <Button variant="contained" onClick={() => handleUpdate(product.id, product.size, product.stock)}>
-                                        <EditIcon/> Update
+                                        <EditIcon /> Update
                                     </Button>
                                 </TableCell>
                             </TableRow>

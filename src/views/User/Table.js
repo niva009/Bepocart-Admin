@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -24,11 +24,7 @@ const TableBanner = () => {
     const navigate = useNavigate();
 
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         setLoading(true);
         setError(null); 
         try {
@@ -55,7 +51,11 @@ const TableBanner = () => {
         } finally {
             setLoading(false); 
         }
-    };
+    }, [navigate]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
 
     return (
         <>
