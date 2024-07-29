@@ -1,0 +1,67 @@
+{
+  "name": "Bepocart Admin",
+  "version": "0.1.0",
+  "homepage": "https://bepositiveracing.com/",
+  "private": true,
+  "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+    "@date-io/date-fns": "^3.0.0",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "5.11.16",
+    "@mui/lab": "^5.0.0-alpha.133",
+    "@mui/material": "^5.16.4",
+    "@mui/styled-engine-sc": "5.12.0",
+    "@mui/x-date-pickers": "^7.8.0",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "13.5.0",
+    "apexcharts": "3.41.0",
+    "axios": "^1.7.2",
+    "axios-mock-adapter": "1.21.4",
+    "date-fns": "^3.6.0",
+    "dayjs": "^1.11.11",
+    "html2canvas": "^1.4.1",
+    "i": "^0.3.7",
+    "jspdf": "^2.5.1",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
+    "react": "18.2.0",
+    "react-apexcharts": "1.4.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "^6.12.1",
+    "styled-components": "5.3.11",
+    "stylis-plugin-rtl": "2.1.1",
+    "web-vitals": "2.1.4"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "overrides": {
+    "@popperjs/core": "2.11.4"
+  }
+}
