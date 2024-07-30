@@ -26,7 +26,7 @@ const TableBanner = () => {
         try {
             setLoading(true);
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-promotion-coupen-views/", {
+            const response = await axios.get("http://51.20.129.52/admin/Bepocart-promotion-coupen-views/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -51,7 +51,7 @@ const TableBanner = () => {
     const handleDelete = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://127.0.0.1:8000/admin/Bepocart-promotion-coupen-delete/${id}/`, {
+            await axios.delete(`http://51.20.129.52/admin/Bepocart-promotion-coupen-delete/${id}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },

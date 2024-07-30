@@ -36,7 +36,7 @@ const FbDefaultForm = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-product-size-view/");
+                const response = await axios.get("http://51.20.129.52/admin/Bepocart-product-size-view/");
                 setFeatures(response.data);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -81,7 +81,7 @@ const FbDefaultForm = () => {
         state.sizes.forEach((size) => formData.append("size", size));
 
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/admin/Bepocart-Product-image-add/${id}/`, formData, {
+            const response = await axios.post(`http://51.20.129.52/admin/Bepocart-Product-image-add/${id}/`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

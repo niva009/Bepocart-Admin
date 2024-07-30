@@ -64,7 +64,7 @@ const FbDefaultForm = () => {
     const [coupons, setCoupons] = useState([]);
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/admin/Bepocart-products/", {
+        axios.get("http://51.20.129.52/admin/Bepocart-products/", {
             headers: {
                 Authorization: `${localStorage.getItem('token')}`
             }
@@ -75,7 +75,7 @@ const FbDefaultForm = () => {
 
         });
 
-        axios.get("http://127.0.0.1:8000/admin/Bepocart-subcategories/", {
+        axios.get("http://51.20.129.52/admin/Bepocart-subcategories/", {
             headers: {
                 Authorization: `${localStorage.getItem('token')}`
             }
@@ -86,7 +86,7 @@ const FbDefaultForm = () => {
 
         });
 
-        axios.get("http://127.0.0.1:8000/admin/Bepocart-promotion-coupen-views/", {
+        axios.get("http://51.20.129.52/admin/Bepocart-promotion-coupen-views/", {
             headers: {
                 Authorization: `${localStorage.getItem('token')}`
             }
@@ -145,7 +145,7 @@ const FbDefaultForm = () => {
         // depending on whether any products are excluded. Use `payload` for saving after form submission.
 
 
-        axios.post("http://127.0.0.1:8000/admin/Bepocart-offer/", payload, {
+        axios.post("http://51.20.129.52/admin/Bepocart-offer/", payload, {
             headers: {
                 Authorization: `${localStorage.getItem('token')}`
             }

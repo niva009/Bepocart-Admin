@@ -43,14 +43,14 @@ const FbDefaultForm = () => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const productResponse = await axios.get("http://127.0.0.1:8000/admin/Bepocart-products/", {
+                const productResponse = await axios.get("http://51.20.129.52/admin/Bepocart-products/", {
                     headers: {
                         Authorization: `${token}`,
                     },
                 });
                 setProducts(productResponse.data.data);
 
-                const categoryResponse = await axios.get("http://127.0.0.1:8000/admin/Bepocart-subcategories/", {
+                const categoryResponse = await axios.get("http://51.20.129.52/admin/Bepocart-subcategories/", {
                     headers: {
                         Authorization: `${token}`,
                     },
@@ -84,7 +84,7 @@ const FbDefaultForm = () => {
                 start_date: new Date(formData.start_date).toISOString(), // Convert to ISO string
                 end_date: new Date(formData.end_date).toISOString(),     // Convert to ISO string
             };
-            const response = await axios.post('http://127.0.0.1:8000/admin/Bepocart-promotion-coupen/', formattedData, {
+            const response = await axios.post('http://51.20.129.52/admin/Bepocart-promotion-coupen/', formattedData, {
                 headers: {
                     Authorization: `${token}`,
                 },

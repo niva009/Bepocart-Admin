@@ -25,7 +25,7 @@ const TableBanner = () => {
         setError(null);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-Product-Review/", {
+            const response = await axios.get("http://51.20.129.52/admin/Bepocart-Product-Review/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -56,7 +56,7 @@ const TableBanner = () => {
     const handleApprove = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put(`http://127.0.0.1:8000/admin/Bepocart-approve-review/${id}/`, null, {
+            const response = await axios.put(`http://51.20.129.52/admin/Bepocart-approve-review/${id}/`, null, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -109,7 +109,7 @@ const TableBanner = () => {
                                 <TableCell align="center">
                                     <Link to={`/user-coin-data/${product.user}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.image}`}
+                                            src={`${product.image}`}
                                             alt={product.user}
                                             style={{ maxWidth: "70px", maxHeight: "70px" }}
                                         />
@@ -118,7 +118,7 @@ const TableBanner = () => {
                                 <TableCell align="center">
                                     <Link to={`/user-coin-data/${product.product}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.product_image}`}
+                                            src={`${product.product_image}`}
                                             alt={product.product}
                                             style={{ maxWidth: "70px", maxHeight: "70px" }}
                                         />

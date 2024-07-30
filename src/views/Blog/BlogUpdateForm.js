@@ -30,7 +30,7 @@ const FbDefaultForm = () => {
     const fetchBlogData = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-Blog-update/${id}/`, {
+            const response = await axios.get(`http://51.20.129.52/admin/Bepocart-Blog-update/${id}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -77,14 +77,14 @@ const FbDefaultForm = () => {
             const token = localStorage.getItem('token');
             let response;
             if (updateMode) {
-                response = await axios.put(`http://127.0.0.1:8000/admin/Bepocart-Blog-update/${id}/`, formData, {
+                response = await axios.put(`http://51.20.129.52/admin/Bepocart-Blog-update/${id}/`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'Authorization': `${token}`,
                     },
                 });
             } else {
-                response = await axios.post("http://127.0.0.1:8000/admin/Bepocart-Blog-create/", formData, {
+                response = await axios.post("http://51.20.129.52/admin/Bepocart-Blog-create/", formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'Authorization': `${token}`,

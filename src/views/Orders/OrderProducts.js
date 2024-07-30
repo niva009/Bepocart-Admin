@@ -28,7 +28,7 @@ const TableBanner = () => {
     const fetchProducts = async (productId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-Order-Item/${productId}/`, {
+            const response = await axios.get(`http://51.20.129.52/admin/Bepocart-Order-Item/${productId}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -94,7 +94,7 @@ const TableBanner = () => {
                             <TableCell>
                                 <Box display="flex" alignItems="center">
                                     <img
-                                        src={`http://127.0.0.1:8000/${product.productImage}`}
+                                        src={`${product.productImage}`}
                                         alt={product.productName}
                                         style={{ maxWidth: "50px", maxHeight: "50px", marginRight: "10px" }}
                                     />

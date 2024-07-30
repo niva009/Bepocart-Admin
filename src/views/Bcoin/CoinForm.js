@@ -28,7 +28,7 @@ const FbDefaultForm = () => {
         e.preventDefault();
 
         try {
-          await axios.post("http://127.0.0.1:8000/admin/Bepocart-Bcoin/", state);
+          await axios.post("http://51.20.129.52/admin/Bepocart-Bcoin/", state);
             setMessage("Coin created successfully");
             setSeverity("success");
             setOpen(true);

@@ -58,7 +58,7 @@ const TableBanner = ({ searchQuery }) => {
         const fetchProducts = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-Orders/", {
+                const response = await axios.get("http://51.20.129.52/admin/Bepocart-Orders/", {
                     headers: {
                         'Authorization': `${token}`,
                     },
@@ -88,7 +88,7 @@ const TableBanner = ({ searchQuery }) => {
     const handleStatusChange = async (productId, newStatus) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://127.0.0.1:8000/admin/Bepocart-Order-status-update/${productId}/`,
+            await axios.put(`http://51.20.129.52/admin/Bepocart-Order-status-update/${productId}/`,
                 { status: newStatus },
                 {
                     headers: {
@@ -162,7 +162,7 @@ const TableBanner = ({ searchQuery }) => {
                                 <TableCell>
                                     <Link to={`/product-image-form/${product.id}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.customerImage}`}
+                                            src={`${product.customerImage}`}
                                             alt={product.customerName}
                                             style={{ maxWidth: "50px", maxHeight: "50px" }}
                                         />

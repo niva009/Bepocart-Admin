@@ -47,7 +47,7 @@ const CategoryTable = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-subcategories/", {
+            const response = await axios.get("http://51.20.129.52/admin/Bepocart-subcategories/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -67,7 +67,7 @@ const CategoryTable = () => {
     const fetchMainCategories = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-categories/", {
+            const response = await axios.get("http://51.20.129.52/admin/Bepocart-categories/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -95,7 +95,7 @@ const CategoryTable = () => {
                 return;
             }
 
-            await axios.delete(`http://127.0.0.1:8000/admin/Bepocart-subcategory-delete/${deleteProductId}/`, {
+            await axios.delete(`http://51.20.129.52/admin/Bepocart-subcategory-delete/${deleteProductId}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -137,7 +137,7 @@ const CategoryTable = () => {
             formData.append("category", editedMainCategory);
 
             const token = localStorage.getItem('token');
-            await axios.put(`http://127.0.0.1:8000/admin/Bepocart-subcategory-update/${editProductId}/`, formData, {
+            await axios.put(`http://51.20.129.52/admin/Bepocart-subcategory-update/${editProductId}/`, formData, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -213,7 +213,7 @@ const CategoryTable = () => {
                                 <TableCell>{product.slug}</TableCell> {/* Display slug */}
                                 <TableCell>
                                     <img
-                                        src={`http://127.0.0.1:8000/${product.image}`}
+                                        src={`${product.image}`}
                                         alt={product.name}
                                         style={{ maxWidth: "50px", maxHeight: "50px" }}
                                     />

@@ -40,7 +40,7 @@ const CoinTable = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-user-coins/${id}/`, {
+            const response = await axios.get(`http://51.20.129.52/admin/Bepocart-user-coins/${id}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -82,7 +82,7 @@ const CoinTable = () => {
                 return;
             }
 
-            await axios.delete(`http://127.0.0.1:8000/admin/Bepocart-coin-delete/${deleteCoinId}/`, {
+            await axios.delete(`http://51.20.129.52/admin/Bepocart-coin-delete/${deleteCoinId}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -117,7 +117,7 @@ const CoinTable = () => {
     const handleSaveEdit = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://127.0.0.1:8000/admin/Bepocart-coin-update/${editCoinId}/`, {
+            await axios.put(`http://51.20.129.52/admin/Bepocart-coin-update/${editCoinId}/`, {
                 coin: editedCoinQuantity,
                 value: editedCoinValue,
                 login_value: editedLoginValue,

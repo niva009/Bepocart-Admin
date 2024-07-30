@@ -33,7 +33,7 @@ const BlogTable = () => {
         setError(null);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/offer/", {
+            const response = await axios.get("http://51.20.129.52/admin/offer/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -67,7 +67,7 @@ const BlogTable = () => {
     const handleDelete = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://127.0.0.1:8000/admin/Bepocart-offer-delete/${deleteProductId}/`, {
+            await axios.delete(`http://51.20.129.52/admin/Bepocart-offer-delete/${deleteProductId}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -87,7 +87,7 @@ const BlogTable = () => {
     const handleStatusToggle = async (productId, currentStatus) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.put(`http://127.0.0.1:8000/admin/Bepocart-offer/${productId}/toggle-status/`, {}, {
+            const response = await axios.put(`http://51.20.129.52/admin/Bepocart-offer/${productId}/toggle-status/`, {}, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -141,7 +141,7 @@ const BlogTable = () => {
                                 </TableCell>
                                 <TableCell>
                                     <img
-                                        src={`http://127.0.0.1:8000/${product.image}`}
+                                        src={`${product.image}`}
                                         alt={product.name}
                                         style={{ maxWidth: "70px", maxHeight: "70px" }}
                                     />
