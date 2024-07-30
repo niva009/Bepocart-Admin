@@ -51,7 +51,7 @@ const FbDefaultForm = () => {
             return;
         }
 
-        axios.post('http://127.0.0.1:8000/admin/register/', {
+        axios.post('http://51.20.129.52/admin/register/', {
             username: state.username,
             email: state.email,
             first_name: state.firstName, // Ensure this matches your backend field

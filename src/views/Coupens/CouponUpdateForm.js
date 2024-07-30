@@ -38,7 +38,7 @@ const FbDefaultForm = () => {
     const fetchCouponDetails = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-promotion-coupen-update/${id}/`, {
+            const response = await axios.get(`http://51.20.129.52/admin/Bepocart-promotion-coupen-update/${id}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -73,7 +73,7 @@ const FbDefaultForm = () => {
     const fetchProducts = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-products/", {
+            const response = await axios.get("http://51.20.129.52/admin/Bepocart-products/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -88,7 +88,7 @@ const FbDefaultForm = () => {
     const fetchCategories = useCallback(async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-subcategories/", {
+            const response = await axios.get("http://51.20.129.52/admin/Bepocart-subcategories/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -128,7 +128,7 @@ const FbDefaultForm = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://127.0.0.1:8000/admin/Bepocart-promotion-coupen-update/${id}/`, formData, {
+            await axios.put(`http://51.20.129.52/admin/Bepocart-promotion-coupen-update/${id}/`, formData, {
                 headers: {
                     'Authorization': `${token}`,
                 },

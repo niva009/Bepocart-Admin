@@ -39,7 +39,7 @@ const FbDefaultForm = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-main-categories/", {
+            const response = await axios.get("http://51.20.129.52/admin/Bepocart-main-categories/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -65,7 +65,7 @@ const FbDefaultForm = () => {
             setState({
                 ...state,
                 mainCategory: value,
-                selectedCategoryImage: selectedCategory ? `http://127.0.0.1:8000/${selectedCategory.image}` : null,
+                selectedCategoryImage: selectedCategory ? `${selectedCategory.image}` : null,
             });
         } else {
             setState({
@@ -86,7 +86,7 @@ const FbDefaultForm = () => {
         }
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/admin/Bepocart-subcategory/", formData, {
+            const response = await axios.post("http://51.20.129.52/admin/Bepocart-subcategory/", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

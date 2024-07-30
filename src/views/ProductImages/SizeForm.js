@@ -23,7 +23,7 @@ const SizeForm = ({ open, onClose, onSizeAdded, productId }) => {
         }
 
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/admin/Bepocart-product-varient/${productId}/`, {
+            const response = await axios.post(`http://51.20.129.52/admin/Bepocart-product-varient/${productId}/`, {
                 size,
                 stock: quantity,
                 product: parseInt(id)

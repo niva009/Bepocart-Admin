@@ -57,7 +57,7 @@ const Invoice = () => {
     useEffect(() => {
         const fetchOrderData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-Order-Bill/${order_id}/`);
+                const response = await axios.get(`http://51.20.129.52/admin/Bepocart-Order-Bill/${order_id}/`);
                 setOrderData(response.data);
             } catch (error) {
                 console.error('Error fetching order data:', error);

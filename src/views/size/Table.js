@@ -38,7 +38,7 @@ const CategoryTable = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-product-varient-view/${id}/`, {
+            const response = await axios.get(`http://51.20.129.52/admin/Bepocart-product-varient-view/${id}/`, {
                 headers: {
                     'Authorization': `${token}`
                 },
@@ -73,7 +73,7 @@ const CategoryTable = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://127.0.0.1:8000/admin/Bepocart-product-varient-delete/${deleteProductId}/`);
+            await axios.delete(`http://51.20.129.52/admin/Bepocart-product-varient-delete/${deleteProductId}/`);
             setProducts(products.filter(product => product.id !== deleteProductId));
             setDeleteDialogOpen(false);
         } catch (error) {
@@ -100,7 +100,7 @@ const CategoryTable = () => {
 
     const handleSaveEdit = async () => {
         try {
-            await axios.put(`http://127.0.0.1:8000/admin/Bepocart-product-varient-update/${editProductId}/`, {
+            await axios.put(`http://51.20.129.52/admin/Bepocart-product-varient-update/${editProductId}/`, {
                 name: editedProductName,
                 stock: editedProductStock,
                 // Add other fields you want to update
@@ -150,7 +150,7 @@ const CategoryTable = () => {
                                 <TableCell>{product.id}</TableCell>
                                 <TableCell>
                                     <img
-                                        src={`http://127.0.0.1:8000/${product.productImage}`}
+                                        src={`${product.productImage}`}
                                         alt={product.name}
                                         style={{ maxWidth: "70px", maxHeight: "70px" }}
                                     />

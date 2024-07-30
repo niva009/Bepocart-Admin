@@ -29,7 +29,7 @@ const TableBanner = () => {
         setError(null); 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get("http://127.0.0.1:8000/admin/Bepocart-customers/", {
+            const response = await axios.get("http://51.20.129.52/admin/Bepocart-customers/", {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -94,7 +94,7 @@ const TableBanner = () => {
                                 <TableCell>
                                     <Link to={`/user-coin-data/${product.id}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.image}`}
+                                            src={`${product.image}`}
                                             alt={product.name}
                                             style={{ maxWidth: "70px", maxHeight: "70px" }}
                                         />

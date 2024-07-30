@@ -34,7 +34,7 @@ export default function SignIn() {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/admin/login/', credentials);
+      const response = await axios.post('http://51.20.129.52/admin/login/', credentials);
       console.log('Login successful:', response.data);
       localStorage.setItem('token', response.data.token);
       window.location.href = '/dashboards/dashboard1';

@@ -33,7 +33,7 @@ const TableBanner = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://127.0.0.1:8000/admin/Bepocart-Product-images/${productId}/`, {
+            const response = await axios.get(`http://51.20.129.52/admin/Bepocart-Product-images/${productId}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -69,7 +69,7 @@ const TableBanner = () => {
     const handleDelete = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://127.0.0.1:8000/admin/Bepocart-Product-images-delete/${deleteProductId}/`, {
+            await axios.delete(`http://51.20.129.52/admin/Bepocart-Product-images-delete/${deleteProductId}/`, {
                 headers: {
                     'Authorization': `${token}`,
                 },
@@ -144,7 +144,7 @@ const TableBanner = () => {
                                     <Link to={`/size-table/${product.id}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
 
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.image1}`}
+                                            src={`${product.image1}`}
                                             alt={product.name}
                                             style={{ maxWidth: "70px", maxHeight: "70px" }}
                                         />
@@ -154,7 +154,7 @@ const TableBanner = () => {
                                     <Link to={`/size-table/${product.id}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
 
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.image2}`}
+                                            src={`${product.image2}`}
                                             alt={product.name}
                                             style={{ maxWidth: "70px", maxHeight: "70px" }}
                                         />
@@ -164,7 +164,7 @@ const TableBanner = () => {
                                     <Link to={`/size-table/${product.id}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
 
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.image3}`}
+                                            src={`${product.image3}`}
                                             alt={product.name}
                                             style={{ maxWidth: "70px", maxHeight: "70px" }}
                                         />
@@ -174,7 +174,7 @@ const TableBanner = () => {
                                     <Link to={`/size-table/${product.id}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
 
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.image4}`}
+                                            src={`${product.image4}`}
                                             alt={product.name}
                                             style={{ maxWidth: "70px", maxHeight: "70px" }}
                                         />
@@ -184,7 +184,7 @@ const TableBanner = () => {
                                     <Link to={`/size-table/${product.id}/`} style={{ textDecoration: 'none', color: 'inherit' }}>
 
                                         <img
-                                            src={`http://127.0.0.1:8000/${product.image5}`}
+                                            src={`${product.image5}`}
                                             alt={product.name}
                                             style={{ maxWidth: "70px", maxHeight: "70px" }}
                                         />
